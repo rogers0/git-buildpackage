@@ -19,7 +19,7 @@ PYCHECKER_ARGS=-boptparse --no-override --no-shadowbuiltin
 override_dh_auto_test:
 ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	dh_auto_test
-	make
+	#make
 else
 	@echo "Checks disabled via DEB_BUILD_OPTIONS"
 endif
