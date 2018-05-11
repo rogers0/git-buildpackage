@@ -7,7 +7,6 @@ Build-Depends:
  debhelper (>= 9~),
  dh-python,
  docbook-utils,
- flake8,
  gtk-doc-tools,
  libdistro-info-perl,
  perl,
