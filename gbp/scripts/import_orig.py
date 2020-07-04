@@ -478,6 +478,10 @@ def main(argv):
         except gbpc.CommandExecFailed:
             raise GbpError()  # The hook already printed an error message
 
+        if options.verbose:
+            for source in sources:
+                gbp.log.info(source)
+
         (pristine_orig, linked) = prepare_pristine_tar(sources[0].path,
                                                        name,
                                                        version)
@@ -515,6 +519,8 @@ def main(argv):
                         # Enforce signature file exists with --upstream-signatures=on
                         if options.upstream_signatures.is_on() and not source.signaturefile:
                             raise GbpError("%s does not have a signature file" % source.path)
+                        elif options.upstream_signatures.is_off():
+                            source.signaturefile = None
                     # For all practical purposes we're interested in pristine_orig's path
                     if pristine_orig != sources[0].path:
                         sources[0]._path = pristine_orig
